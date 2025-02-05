@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+env/  # Or whatever your environment directory is named
+venv/
+*.egg-info
+dist/
+build/
+.mypy_cache/
