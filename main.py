@@ -62,6 +62,19 @@ class NMesh:
             self.__samples = t_points.T
         return np.array(mapped_points)
 
+def Transform(theta, phi):
+    # Note that theta and phi are numpy vecs
+    epsilon, delta = 1500, 820
+    return np.array(
+        [theta + epsilon * np.sin(phi), phi + delta * np.sin(theta)]  # T_θ  # T_φ
+    )
+
+def LogisticTransform(x_n, y_n):
+    r, epsilon = 3.74, 0.1
+    x_next = (1 - epsilon) * r * x_n * (1 - x_n) + epsilon * r * y_n * (1 - y_n)
+    y_next = epsilon * r * x_n * (1 - x_n) + (1 - epsilon) * r * y_n * (1 - y_n)
+    return np.array([x_next, y_next])
+    
 def HenonMap(x_n, y_n):
     a, b, c = 1.4, 0.3, 1.0
     x_val = 1 - a*(x_n**2) + b*y_n
